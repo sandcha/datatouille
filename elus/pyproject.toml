@@ -1,0 +1,12 @@
+[tool.poetry]
+name = "datatouille"
+version = "0.0.1"
+description = "Exploration de jeux de données ouvertes"
+readme = "README.md"
+authors = ["sandcha"]
+repository = ""
+license = "AGPL-3.0-or-later"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.0.1"
