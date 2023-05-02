@@ -44,10 +44,14 @@ PATH_COG_COLLECTIVITES_COMPETENCES_DEPARTEMENTALES="./v_ctcd_2023.csv"
 
 # Liste des membres des assemblées des collectivités à statut particulier selon le RNE :
 PATH_RNE_COLLECTIVITES_STATUT_PARTICULIER="./rne-ma-20221216.csv"
+# N'inclut pas : 
+# * La Ville de Paris (75C)
+# * Le Département de Mayotte (976D)
 # Inclut la Nouvelle-Calédonie sachant que d'après https://fr.wikipedia.org/wiki/Collectivit%C3%A9_%C3%A0_statut_particulier : 
 # "La Nouvelle-Calédonie, en raison de son statut sui generis, 
 # est parfois considérée comme une « collectivité à statut particulier d'outre-mer »,
 # mais relève du titre XIII de la Constitution et non de l'article 72."
+
 
 membres_collectivites_particulieres=read_csv(
     PATH_RNE_COLLECTIVITES_STATUT_PARTICULIER,
@@ -71,3 +75,8 @@ membres_colstatpart_departement_inconnu=membres_collectivites_particulieres[filt
 print("RNE - Liste des collectivités à statut particulier mais à département non défini :")
 print(membres_colstatpart_departement_inconnu["Libellé de la collectivité à statut particulier"].unique())
 print(membres_colstatpart_departement_inconnu["Code de la collectivité à statut particulier"].unique())
+# ['Saint-Pierre-Et-Miquelon' 'Polynésie Française' 'Corse' 'Guyane'
+#  'Saint-Barthélemy' 'Saint-Martin' 'Wallis Et Futuna' 'Nouvelle-Calédonie']
+# ['975' '987' '94' '973' '977' '978' '986' '988']
+
+
