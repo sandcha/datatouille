@@ -13,8 +13,13 @@ pyenv local 3.10.5
 
 ### Exécuter les scripts
 
+Dans un terminal Shell, installer les dépendances : 
+
 ```shell
 cd elus/
 poetry install
-poetry run python explore.py
 ```
+
+Puis, exécuter le script souhaité : 
+* `poetry run python explore_conseillers_municipaux.py`
+* ou `poetry run python explore_collectivites_statut_particulier.py`
