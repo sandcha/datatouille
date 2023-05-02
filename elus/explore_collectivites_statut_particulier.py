@@ -42,6 +42,11 @@ PATH_COG_COLLECTIVITES_COMPETENCES_DEPARTEMENTALES="./v_ctcd_2023.csv"
 # LIBELLE = Nom en clair (typographie riche) avec article
 
 
+# Code officiel géographique (COG) 01.2023 - Communes
+# https://www.insee.fr/fr/information/6800675 :
+PATH_COG_COMMUNES="./v_commune_2023.csv"
+# CTCD = Code de la collectivité territoriale ayant les compétences départementales
+
 # Liste des membres des assemblées des collectivités à statut particulier selon le RNE :
 PATH_RNE_COLLECTIVITES_STATUT_PARTICULIER="./rne-ma-20221216.csv"
 # N'inclut pas : 
@@ -79,4 +84,29 @@ print(membres_colstatpart_departement_inconnu["Code de la collectivité à statu
 #  'Saint-Barthélemy' 'Saint-Martin' 'Wallis Et Futuna' 'Nouvelle-Calédonie']
 # ['975' '987' '94' '973' '977' '978' '986' '988']
 
+# Exemple sur les données initiales :
+CODE_COLLECTIVITE_STATUT_PARTICULIER_RNE="973"  # Guyane
+filtre_collectivite_statut_particulier_rne=(
+    membres_collectivites_particulieres["Code de la collectivité à statut particulier"] == CODE_COLLECTIVITE_STATUT_PARTICULIER_RNE
+    )
+print(membres_collectivites_particulieres[filtre_collectivite_statut_particulier_rne][["Code du département", "Libellé de la collectivité à statut particulier"]])
+
+
+cog_communes_2023=read_csv(
+    PATH_COG_COMMUNES,
+    encoding="utf-8",
+    sep=','
+    )
+
+
+print(cog_communes_2023.head())
+print(cog_communes_2023.columns)
+
+# Hypothèse :
+# Le fichier RNE n'utilise pas le code spécifique des collectivités à statut particulier
+# dans la colonne "Code de la collectivité à statut particulier" mais plutôt le code du département.
+CODE_COLLECTIVITE_STATUT_PARTICULIER_INSEE="975"  # Saint-Pierre-Et-Miquelon
+filtre_collectivite_statut_particulier_insee=(cog_communes_2023["CTCD"] == CODE_COLLECTIVITE_STATUT_PARTICULIER_INSEE)
+print(cog_communes_2023["CTCD"])
+print(cog_communes_2023[filtre_collectivite_statut_particulier_insee])
 
